@@ -1,0 +1,18 @@
+version: '2'
+
+services:
+
+  web1:
+    image: java-webserver:v1
+
+  web2:
+    image: golang-webserver:v1
+
+  haproxy:
+    build: ./haproxy
+#    image: haproxy:v1
+    ports:
+        - 8000:8000
+    depends_on:
+      - web1
+      - web2
